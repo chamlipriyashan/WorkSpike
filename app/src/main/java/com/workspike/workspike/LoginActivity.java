@@ -1,23 +1,21 @@
 package com.workspike.workspike;
 
-import com.bumptech.glide.Glide;
-
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +37,8 @@ import com.workspike.workspike.other_activities.TermsofserviceActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 /**
@@ -68,8 +68,6 @@ public class LoginActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
-
-
         System.out.println("goda");
         boolean loggedin_status = loadSavedPreferences("CheckBox_Value");
         System.out.println(loggedin_status);
@@ -79,23 +77,14 @@ public class LoginActivity extends Activity {
             startActivity(intent);
             finish();
         }
-
-
-
-
-
-
-
-
-
-
+        //  printhash();
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         loggedIn = isFacebookLoggedIn();
 
 
         setContentView(R.layout.login_activity);
-        info = (TextView) findViewById(R.id.info);
+        //info = (TextView) findViewById(R.id.info);
         loginButton = (LoginButton) findViewById(R.id.login_button);
 
         ImageButton closebutton= (ImageButton) findViewById(R.id.closeButton);
@@ -259,13 +248,13 @@ public class LoginActivity extends Activity {
                 String profileImgUrl = "https://graph.facebook.com/" + userID + "/picture?type=large";
                 System.out.println("this ids from login activity"+profileImgUrl);
                 savePreferences("PROFILEIMAGE", profileImgUrl);
-                info.setText(
-                        "User ID: "
-                                + loginResult.getAccessToken().getUserId()
-                                + "\n" +
-                                "Auth Token: "
-                                + loginResult.getAccessToken().getToken()
-                );
+//                info.setText(
+//                        "User ID: "
+//                                + loginResult.getAccessToken().getUserId()
+//                                + "\n" +
+//                                "Auth Token: "
+//                                + loginResult.getAccessToken().getToken()
+//                );
 
                 savePreferences("CheckBox_Value", true);
                 Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
@@ -275,12 +264,12 @@ public class LoginActivity extends Activity {
 
             @Override
             public void onCancel() {
-                info.setText("Login attempt canceled.");
+              //  info.setText("Login attempt canceled.");
             }
 
             @Override
             public void onError(FacebookException e) {
-                info.setText("Login attempt failed");
+              //  info.setText("Login attempt failed");
             }
         });
 
@@ -336,4 +325,29 @@ public class LoginActivity extends Activity {
     }
 
 
+
+
+
+
+
+    private void printhash(){
+        PackageInfo info;
+        try {
+            info = getPackageManager().getPackageInfo("com.workspike.workspike", PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md;
+                md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                String something = new String(Base64.encode(md.digest(), 0));
+                //String something = new String(Base64.encodeBytes(md.digest()));
+                Log.e("hash key", something);
+            }
+        } catch (PackageManager.NameNotFoundException e1) {
+            Log.e("name not found", e1.toString());
+        } catch (NoSuchAlgorithmException e) {
+            Log.e("no such an algorithm", e.toString());
+        } catch (Exception e) {
+            Log.e("exception", e.toString());
+        }
+    }
 }
