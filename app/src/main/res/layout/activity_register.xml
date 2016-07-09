@@ -8,128 +8,166 @@
     android:background="@drawable/background"
    >
 
-    <FrameLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="200dp"
+            android:id="@+id/space" />
 
-            <RelativeLayout
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:id="@+id/et_email"
+            android:editable="true"
+            android:textColor="#ffffff"
+            android:background="@drawable/text_field_boundingbox"
+            android:inputType="textWebEmailAddress|text"
+            android:textStyle="normal"
+            android:paddingStart="20dp"
+            android:layout_below="@+id/et_password"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:autoText="false"
+            android:hint="E-Mail"
+            android:textColorHint="#bcc2c0c0"
+            android:textAlignment="center"
+            android:textSize="20dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:id="@+id/et_password"
+            android:editable="true"
+            android:textColor="#ffffff"
+            android:background="@drawable/text_field_boundingbox"
+            android:inputType="textPassword|text"
+            android:paddingStart="20dp"
+            android:layout_below="@+id/et_email"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:hint="Password"
+            android:textColorHint="#bcc2c0c0"
+            android:textAlignment="center"
+            android:textSize="20dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:id="@+id/et_lastname"
+            android:editable="true"
+            android:textColor="#ffffff"
+            android:background="@drawable/text_field_boundingbox"
+            android:inputType="text"
+            android:paddingStart="20dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColorHint="#bcc2c0c0"
+            android:hint="Full Name"
+            android:textAlignment="center"
+            android:textSize="20dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:id="@+id/et_full_name"
+            android:editable="true"
+            android:textColor="#ffffff"
+            android:background="@drawable/text_field_boundingbox"
+            android:inputType="date"
+            android:paddingStart="20dp"
+            android:layout_below="@+id/space"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColorHint="#bcc2c0c0"
+            android:hint="Birth Date"
+            android:textAlignment="center"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView6"
+            android:src="@drawable/signup_screen_16"
+            android:adjustViewBounds="true"
+            android:layout_below="@+id/et_email"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView6"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Already have an account?"
+                android:id="@+id/tv_already_have_an_account"
+                android:textSize="16dp"
+                android:paddingStart="12dp"
+                android:textColor="#282e94" />
+
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp" >
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:id="@+id/space2" />
-
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageView3"
-                    android:src="@drawable/sgnup_screen_14"
-                    android:adjustViewBounds="true"
-
-                    android:layout_below="@+id/space2"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView4"
-                    android:layout_below="@+id/imageView2"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:adjustViewBounds="true" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView2"
-                    android:src="@drawable/sgnup_screen_14"
-                    android:layout_below="@+id/imageView3"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:adjustViewBounds="true" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView5"
-                    android:layout_below="@+id/imageView4"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:adjustViewBounds="true" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:id="@+id/space"
-                    android:layout_alignParentTop="true"
+                    android:text="By signing up,I agree to Workspike’s  "
+                    android:id="@+id/textView3"
+                    android:layout_gravity="center_horizontal"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textAlignment="center"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="13dp" />
 
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageView6"
-                    android:src="@drawable/signup_screen_16"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true" />
+                    android:text="Terms of Service"
+                    android:id="@+id/register_termsof_service"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textAlignment="center"
+                    android:textColor="#2b5ba8"
+                    android:autoLink="web"
+                    android:linksClickable="true" />
+            </LinearLayout>
 
-            </RelativeLayout>
-        </RelativeLayout>
-    </FrameLayout>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/usrname_et"
-        android:layout_marginTop="215dp"
-        android:editable="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginLeft="65dp"
-        android:textColor="#ffffff"
-        android:layout_marginRight="17dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:id="@+id/editText"
-        android:editable="true"
-        android:textColor="#ffffff"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="350dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:background="@drawable/sgnup_screen_14"
-        android:inputType="text"
-        android:paddingStart="60dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/password_et"
-        android:editable="true"
-        android:textColor="#ffffff"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="65dp"
-        android:layout_marginRight="17dp"
-        android:layout_marginTop="50dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="© 2016 workspike.com."
+                android:id="@+id/worksikelink_2"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textAlignment="center"
+                android:textColor="#2b5ba8"
+                android:layout_marginTop="5dp"
+                android:linksClickable="true"
+                android:contextClickable="true"
+                android:clickable="true" />
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>
