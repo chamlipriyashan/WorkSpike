@@ -19,7 +19,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:id="@+id/dashboard"
+            android:id="@+id/dashboard_image"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_margin="150dp" />

@@ -18,14 +18,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView android:layout_width="225dp" android:layout_height="95dp"
+        <ImageView android:layout_width="match_parent" android:layout_height="95dp"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
             android:src="@drawable/xxxxxxx"
             android:id="@+id/profilepicture"
-            android:layout_weight="1.47"
-            android:scaleType="fitStart"
-            android:layout_above="@+id/tvmain_fullname"
-            android:layout_marginLeft="10dp" />
+            android:layout_above="@+id/tvmain_fullname" />
 
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
             android:paddingTop="5dp" android:text="Full Name"
@@ -36,15 +33,17 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:enabled="true"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textAlignment="center" />
 
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
             android:text="mainemail@workspike.com" android:id="@+id/main_email"
             android:textSize="16dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textAlignment="center" />
     </LinearLayout>
 
 

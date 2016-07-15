@@ -71,7 +71,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
 
-
+        <activity
+            android:name=".PrefsActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
 
 
         <activity

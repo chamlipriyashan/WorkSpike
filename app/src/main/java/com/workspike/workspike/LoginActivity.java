@@ -221,18 +221,21 @@ public class LoginActivity extends Activity {
                                 // Application code
                                 try {
                                     String email = object.getString("email");
+                                    savePreferences("EMAIL",email);
                                     System.out.println(email);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                                 try {
                                     String gender = object.getString("gender");
+                                    savePreferences("GENDER",gender);
                                     System.out.println(gender);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                                 try {
                                     String birthday = object.getString("birthday"); // 01/31/1980 format
+                                    savePreferences("BIRTHDAY",birthday);
                                     System.out.println(birthday);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -350,4 +353,12 @@ public class LoginActivity extends Activity {
             Log.e("exception", e.toString());
         }
     }
+
+
+
+
+
+
+
+
 }

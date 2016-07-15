@@ -1,5 +1,6 @@
 package com.workspike.workspike;
 
+import android.app.DatePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -10,12 +11,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.workspike.workspike.other_activities.TermsofserviceActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class RegisterActivity extends AppCompatActivity {
+    TextView dateofbirth;
+    EditText email;
+    String x;
+    String neww;
+    String Birtdate;
+    final Calendar myCalendar = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,18 +41,31 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
 
-        EditText email= (EditText) findViewById(R.id.et_email);
-        EditText password= (EditText) findViewById(R.id.et_password);
-        EditText fullname= (EditText) findViewById(R.id.et_full_name);
-        EditText lastname= (EditText) findViewById(R.id.et_lastname);
+        email = (EditText) findViewById(R.id.et_email);
+        EditText password = (EditText) findViewById(R.id.et_password);
+        EditText fullname = (EditText) findViewById(R.id.et_fullname);
+        dateofbirth = (TextView) findViewById(R.id.et_dateofbirth);
 
         Typeface font_style = Typeface.createFromAsset(getAssets(), "rio-glamour-personal-use.regular.otf");
         email.setTypeface(font_style);
         password.setTypeface(font_style);
         fullname.setTypeface(font_style);
-        lastname.setTypeface(font_style);
+        dateofbirth.setTypeface(font_style);
 
-        TextView termsofservice= (TextView) findViewById(R.id.register_termsof_service);
+        dateofbirth.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(RegisterActivity.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
+        TextView termsofservice = (TextView) findViewById(R.id.register_termsof_service);
+        assert termsofservice != null;
         termsofservice.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -51,7 +76,8 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        TextView workspikelink= (TextView) findViewById(R.id.worksikelink_2);
+        TextView workspikelink = (TextView) findViewById(R.id.worksikelink_2);
+        assert workspikelink != null;
         workspikelink.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -71,11 +97,40 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
-
-
     }
+
+    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            // TODO Auto-generated method stub
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+
+        }
+
+    };
+
+
+    private void updateLabel() {
+
+        String myFormat = "MM/dd/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        Birtdate = sdf.format(myCalendar.getTime());
+        x = (String) Birtdate;
+        dateofbirth.setText(x);
+        char[] cArray = Birtdate.toCharArray();
+        for (int i = 0; i < 7; i++) {
+            neww = "" + cArray[i];
+        }
+        System.out.println(neww);
+        System.out.println(Birtdate);
+        System.out.println(sdf.format(myCalendar.DATE));
+        System.out.println(sdf.format(myCalendar.getTime()));
+    }
+
+
 }
