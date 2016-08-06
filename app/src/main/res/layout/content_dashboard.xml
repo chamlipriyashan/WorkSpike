@@ -8,19 +8,10 @@
     tools:context="com.workspike.workspike.DashboardActivity"
     tools:showIn="@layout/app_bar_dashboard">
 
-    <LinearLayout
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/dashboard_image"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="150dp" />
-
-
-    </LinearLayout>
+        android:layout_height="200dp"
+        android:id="@+id/gifbanner"
+        android:longClickable="true" />
 
 </RelativeLayout>

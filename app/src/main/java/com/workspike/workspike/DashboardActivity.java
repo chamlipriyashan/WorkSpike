@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -23,10 +24,19 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 public class DashboardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ImageView profilepicture;
+    ImageView gif_banner;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +48,8 @@ public class DashboardActivity extends AppCompatActivity
         setContentView(R.layout.activity_dashboard);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        ImageView dashboard_image = (ImageView) findViewById(R.id.dashboard_image);
+       // ImageView dashboard_image = (ImageView) findViewById(R.id.dashboard_image);
+        ImageView gifbanner = (ImageView) findViewById(R.id.gifbanner);
 
         setSupportActionBar(toolbar);
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -51,9 +62,12 @@ public class DashboardActivity extends AppCompatActivity
         System.out.println(loadSavedstringPreferences("LASTNAME", "DEFAULT"));
         System.out.println(loadSavedstringPreferences("NAME", "DEFAULT"));
 
-        Glide.with(DashboardActivity.this)
-                .load(loadSavedimagePreferences("PROFILEIMAGE"))
-                .into(dashboard_image);
+//        Glide.with(DashboardActivity.this)
+//                .load(loadSavedimagePreferences("PROFILEIMAGE"))
+//                .into(dashboard_image);
+
+
+
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -74,6 +88,15 @@ public class DashboardActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        Glide.with(DashboardActivity.this)
+                .load("http://www.workspike.com/workspike/APIs/banners/gif1.gif")
+                .asGif()
+                .into(gifbanner);
 
     }
 
@@ -164,6 +187,9 @@ public class DashboardActivity extends AppCompatActivity
         } else if (id == R.id.nav_revenues) {
 
         } else if (id == R.id.nav_settings) {
+            Intent intent = new Intent(DashboardActivity.this,
+                    PrefsActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_feedback) {
 
@@ -225,4 +251,43 @@ public class DashboardActivity extends AppCompatActivity
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Dashboard Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://com.workspike.workspike/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Dashboard Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://com.workspike.workspike/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
+    }
 }

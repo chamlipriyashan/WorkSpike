@@ -87,7 +87,8 @@
             android:layout_margin="0dp"
             android:scaleType="fitCenter"
             android:layout_marginTop="0dp"
-            android:adjustViewBounds="true" />
+            android:adjustViewBounds="true"
+            android:visibility="invisible" />
 
         <LinearLayout
             android:orientation="horizontal"
