@@ -49,7 +49,7 @@ public class DashboardActivity extends AppCompatActivity
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
        // ImageView dashboard_image = (ImageView) findViewById(R.id.dashboard_image);
-        ImageView gifbanner = (ImageView) findViewById(R.id.gifbanner);
+        ImageView gifbanner = (ImageView) findViewById(R.id.gif_banner);
 
         setSupportActionBar(toolbar);
         FacebookSdk.sdkInitialize(getApplicationContext());
