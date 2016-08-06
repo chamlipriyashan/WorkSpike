@@ -20,7 +20,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="210dp"
                 android:id="@+id/gif_banner"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitXY"
