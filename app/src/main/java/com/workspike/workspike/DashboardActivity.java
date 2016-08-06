@@ -18,7 +18,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -32,6 +34,13 @@ public class DashboardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ImageView profilepicture;
     ImageView gif_banner;
+
+    private String[] monthsArray = { "JAN", "FEB", "MAR", "APR", "MAY", "JUNE", "JULY",
+            "AUG", "SEPT", "OCT", "NOV", "DEC" };
+
+    private ListView monthsListView;
+    private ArrayAdapter arrayAdapter;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -46,6 +55,9 @@ public class DashboardActivity extends AppCompatActivity
         // profilepicture = (ImageView) findViewById(R.id.dashboardprofilepic);
 
         setContentView(R.layout.activity_dashboard);
+
+
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
        // ImageView dashboard_image = (ImageView) findViewById(R.id.dashboard_image);
@@ -97,6 +109,14 @@ public class DashboardActivity extends AppCompatActivity
                 .load("http://www.workspike.com/workspike/APIs/banners/gif1.gif")
                 .asGif()
                 .into(gifbanner);
+
+
+        monthsListView = (ListView) findViewById(R.id.months_list);
+        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, monthsArray);
+        monthsListView.setAdapter(arrayAdapter);
+
+
+
 
     }
 

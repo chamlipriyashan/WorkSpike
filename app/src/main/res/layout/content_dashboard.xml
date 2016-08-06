@@ -4,27 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="false"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.workspike.workspike.DashboardActivity"
     tools:showIn="@layout/app_bar_dashboard">
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/scrollView" >
-
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/gif_banner"
                 android:layout_centerHorizontal="true"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:scrollIndicators="left" />
+
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="584dp"
+                android:id="@+id/months_list"
+                android:layout_below="@+id/months_list"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
         </LinearLayout>
     </ScrollView>
+
 
 </RelativeLayout>
