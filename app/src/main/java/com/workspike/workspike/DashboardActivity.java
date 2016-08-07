@@ -122,7 +122,7 @@ public class DashboardActivity extends AppCompatActivity
             monthsListView.setAdapter(arrayAdapter);
         }
 
-
+        monthsListView.setSelection(0);
     }
 
     @Override
@@ -208,6 +208,10 @@ public class DashboardActivity extends AppCompatActivity
         } else if (id == R.id.nav_favourits) {
 
         } else if (id == R.id.nav_brows_projects) {
+
+            Intent intent = new Intent(DashboardActivity.this,
+                   BrowsprojectsActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_browse_spikers) {
 

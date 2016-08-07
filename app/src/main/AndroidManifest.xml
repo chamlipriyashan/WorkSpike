@@ -5,15 +5,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".AppController"
+
+
         android:allowBackup="true"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-
-
         <activity android:name=".LoginActivity">
 
             <!-- <intent-filter> -->
@@ -33,19 +32,10 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-
-
-
         <activity
             android:name=".DashboardActivity"
             android:label="@string/title_activity_dashboard"
             android:theme="@style/AppTheme.NoActionBar" />
-
-
-
-
-
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
@@ -55,36 +45,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
-
-        <activity android:name=".RegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-
-
-
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".other_activities.TermsofserviceActivity"
             android:label="@string/title_activity_termsofservice"
             android:theme="@style/AppTheme.NoActionBar" />
-
-
         <activity
             android:name=".PrefsActivity"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
-        </activity>
-
-
+            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
         <activity
             android:name=".other_activities.HelpActivity"
             android:label="@string/title_activity_help"
-            android:theme="@style/AppTheme.NoActionBar"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".BrowsprojectsActivity"></activity>
     </application>
 
 </manifest>
