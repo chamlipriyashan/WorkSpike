@@ -32,14 +32,11 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class DashboardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    ImageView profilepicture;
-    ImageView gif_banner;
+    //ImageView profilepicture;
+    public final ThreadLocal<ImageView> gif_banner = new ThreadLocal<>();
 
     private String[] monthsArray = { "JAN", "FEB", "MAR", "APR", "MAY", "JUNE", "JULY",
             "AUG", "SEPT", "OCT", "NOV", "DEC" };
-
-    private ListView monthsListView;
-    private ArrayAdapter arrayAdapter;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -67,7 +64,7 @@ public class DashboardActivity extends AppCompatActivity
         FacebookSdk.sdkInitialize(getApplicationContext());
 
 
-        System.out.println(" this is from Dashboard activity" + loadSavedimagePreferences("PROFILEIMAGE"));
+        System.out.println(" this is from Dashboard activity" + loadSavedimagePreferences());
         System.out.println(loadSavedstringPreferences("NAME", "DEFAULT"));
         System.out.println(loadSavedstringPreferences("ID", "DEFAULT"));
         System.out.println(loadSavedstringPreferences("FIRSTNAME", "DEFAULT"));
@@ -83,39 +80,47 @@ public class DashboardActivity extends AppCompatActivity
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        if (fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            });
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        if (drawer != null) {
+            drawer.setDrawerListener(toggle);
+        }
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        if (navigationView != null) {
+            navigationView.setNavigationItemSelectedListener(this);
+        }
 
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
-        Glide.with(DashboardActivity.this)
-                .load("http://www.workspike.com/workspike/APIs/banners/gif1.gif")
-                .asGif()
-                .into(gifbanner);
+        if (gifbanner != null) {
+            Glide.with(DashboardActivity.this)
+                    .load("http://www.workspike.com/workspike/APIs/banners/gif1.gif")
+                    .asGif()
+                    .into(gifbanner);
+        }
 
 
-        monthsListView = (ListView) findViewById(R.id.months_list);
-        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, monthsArray);
-        monthsListView.setAdapter(arrayAdapter);
-
-
+        ListView monthsListView = (ListView) findViewById(R.id.custom_list);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, monthsArray);
+        if (monthsListView != null) {
+            monthsListView.setAdapter(arrayAdapter);
+        }
 
 
     }
@@ -123,10 +128,12 @@ public class DashboardActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        if (drawer != null) {
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 
@@ -139,11 +146,17 @@ public class DashboardActivity extends AppCompatActivity
         TextView draweremail = (TextView) findViewById(R.id.main_email);
 
 
-        drawername.setText(loadSavedstringPreferences("NAME", "DEFAULT"));
-        draweremail.setText(loadSavedstringPreferences("EMAIL", "DEFAULT"));
-        Glide.with(DashboardActivity.this)
-                .load(loadSavedimagePreferences("PROFILEIMAGE"))
-                .into(profile_image);
+        if (drawername != null) {
+            drawername.setText(loadSavedstringPreferences("NAME", "DEFAULT"));
+        }
+        if (draweremail != null) {
+            draweremail.setText(loadSavedstringPreferences("EMAIL", "DEFAULT"));
+        }
+        if (profile_image != null) {
+            Glide.with(DashboardActivity.this)
+                    .load(loadSavedimagePreferences())
+                    .into(profile_image);
+        }
 
 
         return true;
@@ -232,14 +245,16 @@ public class DashboardActivity extends AppCompatActivity
                     .setNegativeButton(android.R.string.no, null).show();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        if (drawer != null) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
 
 
         return true;
     }
 
 
-    private String loadSavedimagePreferences(String x) {
+    private String loadSavedimagePreferences() {
         SharedPreferences preferences = getSharedPreferences("your_file_name", MODE_PRIVATE);
         // boolean checkBoxValue = preferences.getBoolean("CheckBox_Value", false);
         String string = preferences.getString("PROFILEIMAGE", "http://goo.gl/gEgYUd");
@@ -263,13 +278,13 @@ public class DashboardActivity extends AppCompatActivity
     }
 
 
-    private void savePreferences(String key, String value) {
-        SharedPreferences preferences = getSharedPreferences("your_file_name", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(key, value);
-        editor.apply();
-
-    }
+//    private void savePreferences(String key, String value) {
+//        SharedPreferences preferences = getSharedPreferences("your_file_name", MODE_PRIVATE);
+//        SharedPreferences.Editor editor = preferences.edit();
+//        editor.putString(key, value);
+//        editor.apply();
+//
+//    }
 
     @Override
     public void onStart() {
